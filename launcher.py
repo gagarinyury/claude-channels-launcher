@@ -67,9 +67,9 @@ def session_alive() -> bool:
 def start_session() -> str:
     global _starting
     if _starting:
-        return "⏳ Уже запускается, подожди..."
+        return "⏳ Already starting, please wait..."
     if session_alive():
-        return "✅ Уже работает."
+        return "✅ Already running."
     _starting = True
     # Session exists (launcher window) — just add main window
     session_exists = subprocess.run(
@@ -86,12 +86,12 @@ def start_session() -> str:
     time.sleep(5)
     _starting = False
     if not session_alive():
-        return "❌ Не удалось запустить."
+        return "❌ Failed to start."
     global _was_alive
     _was_alive = True
     lines = clean_logs()
     preview = "\n".join(lines[-5:]) if lines else ""
-    return f"✅ Claude запущен.\n\n{preview}"
+    return f"✅ Claude started.\n\n{preview}"
 
 
 def stop_session() -> str:
@@ -149,10 +149,10 @@ def clean_logs() -> list[str]:
 
 def get_status() -> str:
     if not session_alive():
-        return "🔴 Claude Code — offline\n/start — запустить"
+        return "🔴 Claude Code — offline\n/launch — start"
     lines = clean_logs()
-    preview = "\n".join(lines[-5:]) if lines else "(нет вывода)"
-    return f"🟢 Claude Code — работает\n\n{preview}"
+    preview = "\n".join(lines[-5:]) if lines else "(no output)"
+    return f"🟢 Claude Code — running\n\n{preview}"
 
 
 # ── command handler ───────────────────────────────────────────────────────────
