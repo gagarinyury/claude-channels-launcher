@@ -1,0 +1,19 @@
+[Unit]
+Description=Claude Code Launcher Bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+EnvironmentFile=/home/yury/claude-launcher/.env
+ExecStart=/usr/bin/python3 /home/yury/claude-launcher/launcher.py
+Restart=always
+RestartSec=5
+User=yury
+WorkingDirectory=/home/yury/claude-launcher
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=claude-launcher
+
+[Install]
+WantedBy=default.target
