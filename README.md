@@ -24,6 +24,8 @@
 
 ## Demo
 
+![Claude Channels Launcher screenshot](screenshot.png)
+
 ```
 you:  /status
 bot:  🟢 Claude Code — running
